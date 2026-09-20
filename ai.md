@@ -1,85 +1,25 @@
 # AI Usage Disclosure
 
-[← Back to README](./README.md)
+## AI used in development
 
-> AI tools are **100% permitted** at HackMysuru 1.0. Disclosing them is **mandatory**.
-> Using AI never costs you points. Not being able to explain code you submitted does.
-> Reviewers check this file against your commit history and the AI segment of your video.
+We built this project primarily using **MiniMax M3**, an AI coding model. It generated the application structure, API routes, Supabase integration, the Gemini service layer, and the employee/admin dashboards. Most of the generated code was used largely as-is; our review focused on checking that it matched our intended feature set rather than rewriting it line by line.
 
-<!--
-This file covers two different things. Keep them separate:
-  Section 1: AI tools YOU used while building (ChatGPT, Copilot, Cursor, Claude, v0, ...)
-  Section 3: AI models your PRODUCT uses at runtime (vision model, LLM classifier, ...)
-If you used no AI at all, say so explicitly in the Summary and delete the rest.
--->
+We also used **Claude** (Anthropic's AI assistant) to review our repository against the hackathon submission checklist, to proofread this file, and to draft our **decision log, README and slide deck**. We reviewed the drafts against our own project and edited them before submitting.
 
----
+What we did ourselves: we set up and configured the environment (Supabase project, Gemini API credentials), then ran the local install and migration (`npm install`, `npm run db:migrate`, `npm run dev`). The app runs locally, but because of our limited Gemini API key we could not complete the last step (providing a tracking address).. We also hit a real Gemini API billing/quota issue during testing and worked through it. AI analysis can be rate-limited in the live demo. That process let us verify the app's actual behavior beyond what the AI-generated code claimed.
 
-## Summary
+## AI used inside the product itself
 
-| Question | Answer |
-|---|---|
-| Did we use AI tools during development? | `<Yes / No>` |
-| Does our product use AI/ML at runtime? | `<Yes / No>` |
-| Roughly how much of the code was AI-assisted? | `<e.g. ~40% of frontend, ~15% of backend, 0% of routing logic>` |
-| Can every team member explain the AI-assisted code? | `<Yes>` |
+The application uses **Google Gemini** at runtime for:
+- Analyzing a citizen's complaint text and photo, and drafting a title and description (`lib/gemini/text.ts`, `lib/gemini/vision.ts`)
+- Transcribing voice input and generating text-to-speech responses (`lib/gemini/audio.ts`)
 
----
+Gemini is deliberately **not** used to decide department routing or jurisdiction. Those are handled by deterministic backend logic (`lib/complaints/routing.ts`, `lib/location/`) so that a citizen's ward assignment and department routing can't be altered by a bad or manipulated AI response.
 
-## 1. AI Tools Used During Development
+## What we manually verified
 
-| Tool | Model / plan | Used by | What we used it for |
-|---|---|---|---|
-| `<ChatGPT>` | `<GPT-x, free>` | `<@handle>` | `<Debugging CORS errors, regex for phone validation>` |
-| `<GitHub Copilot>` | `<...>` | `<@handle, @handle>` | `<Autocomplete in React components>` |
-| `<Cursor / Claude / v0 / ...>` | `<...>` | `<...>` | `<...>` |
+During testing,walked through the complaint submission flow up to the final step. (text/photo input → AI analysis → jurisdiction validation → routing) and confirmed the deterministic routing and jurisdiction logic behaves correctly independent of the AI-generated description text.
 
-## 2. Where AI Helped in the Codebase
+Example file we reviewed by hand and explain in the video: We did not manually edit the AI-generated code; we verified its behaviour by running the app and testing the submission flow.
 
-| Area / file | Level of AI help | What a human did |
-|---|---|---|
-| `src/<frontend/components/>` | `<High: scaffolded by v0>` | `<Rewrote state handling, added offline queue>` |
-| `src/<api/routes.py>` | `<Medium: Copilot suggestions>` | `<Designed endpoints, wrote validation>` |
-| `src/<routing/engine.py>` | `<None>` | `<Written by hand, core logic>` |
-| `<README / docs>` | `<...>` | `<...>` |
-
-**Commit convention (optional, recommended):** commits containing substantial AI-generated code are tagged `[ai]` in the message, e.g. `feat: ward status page [ai]`.
-
-## 3. AI Inside the Product (runtime)
-
-<!-- Delete this section if your product uses no AI/ML at runtime. -->
-
-| Model / API | What it does in our product | Hosted where | Trained / fine-tuned by us? |
-|---|---|---|---|
-| `<YOLOv8n>` | `<Detects overflowing bins in photos>` | `<On server / on device>` | `<Fine-tuned on 300 labelled images>` |
-| `<LLM API>` | `<Classifies complaint text into issue types>` | `<Provider API>` | `<No, prompt only>` |
-
-- **Accuracy we measured:** `<e.g. 82% precision on 50 held-out images>` (or "not measured yet")
-- **What happens when the model is wrong:** `<fallback, human review, confidence threshold>`
-- **Does it work offline?** `<...>`
-- **Citizen data sent to third parties:** `<none / what, and why>`
-- **Cost at city scale:** `<rough estimate, or "unknown">`
-
-## 4. Key Prompts (optional, max 5)
-
-<!-- Only prompts that shaped a real design or code decision. Not a full chat log. -->
-
-| # | Prompt (short) | What we kept | What we changed or rejected |
-|---|---|---|---|
-| 1 | `<"Suggest a schema for complaints with geo-dedup">` | `<Table layout>` | `<Replaced lat/lng floats with PostGIS geography>` |
-
-## 5. How We Verified AI Output
-
-- `<e.g. Every AI-generated function was run against our seed data before merging>`
-- `<e.g. Rejected suggestions that stored photos in the database as base64>`
-- `<Example of a bug an AI tool introduced and how we caught it>`
-
-## 6. What We Deliberately Did *Not* Use AI For
-
-- `<e.g. The Decision Log — written by the team in our own words>`
-- `<e.g. The jurisdiction routing rules>`
-
----
-
-**Declaration:** We confirm this disclosure is complete, and every team member can explain the code listed above.
-**Signed:** `<Team Leader name>` on behalf of `<Team Name>` · `<date>`
+We did not manually edit the AI-generated code; we verified its behaviour by running the app and testing the submission flow. In the video we open one AI-assisted file and explain what it does and what we tested.
