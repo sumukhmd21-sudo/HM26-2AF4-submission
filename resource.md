@@ -28,18 +28,18 @@ HOW TO FILL THIS FILE
 
 | # | Member | Program & Year | GitHub Handle | Primary Role |
 |---|---|---|---|---|
-| 1 | `<name>` (Lead) | `<B.E. CSE, 3rd yr>` | `@<handle>` | `<backend / ML / frontend / ...>` |
-| 2 | `<name>` | `<...>` | `@<handle>` | `<...>` |
-| 3 | `<name>` | `<...>` | `@<handle>` | `<...>` |
-| 4 | `<name>` | `<...>` | `@<handle>` | `<...>` |
+| 1 | `varun v desai` (Lead) | `<B.E. CSE(ai&ml), 2rd yr>` | `@<handle>` | `<backend / ML / frontend / ...>` |
+| 2 | `sumukh m dinesh` | `member` | `@<handle>` | `github uploading/file handling` |
+| 3 | `ashish holkunde` | `optional` | `@<handle>` | `code running` |
+| 4 | `ronit kumar` | `optional` | `@<handle>` | `ppt creation` |
 
 ---
 
 ## 2. What We Built (one-liner)
 
-**Sub-problem:** `<Routing | Follow-through | Visibility | Verification | Detection without reporting | Segregation drift | Hotspot pattern-finding | Field worker feedback loop | Own: ____>`
+Sub-problem:`<Routing | Follow-through | Visibility | Verification >`
 
-**In one sentence:** `<e.g. "An offline-first reporting app that auto-routes complaints to MCC, town panchayat or gram panchayat using ward boundaries and issue type, with a confidence score for boundary cases.">`
+we bulit a website which registers and keeps track of the registered complaint
 
 ---
 
@@ -61,9 +61,9 @@ HOW TO FILL THIS FILE
 
 | # | Artifact | Google Drive Link | File Name | SHA-256 (first 16 chars) |
 |---|---|---|---|---|
-| 1 | [Pitch + Code Walkthrough Video](./resource-templates/video-guide.md) (≤ 10 min, MP4) | `<https://drive.google.com/file/d/.../view>` | `<TeamID>_video.mp4` | `<a1b2c3d4e5f60718>` |
+| 1 | [Pitch + Code Walkthrough Video](./resource-templates/video-guide.md) (≤ 10 min, MP4) | `https://drive.google.com/file/d/1o_rjF4I3QFb00NX7pYR4plFBWZritcGC/view?usp=drive_link` | `HM26-2AF4_video.mp4` | `AFCDDB2C5C8D83B8` |
 | 2 | [Decision Log](./resource-templates/decision-log-template.md) (1 page, PDF) | `https://drive.google.com/file/d/1OIUjhWiBWiUH7wjFQOyAYAvT-cFj4Pmz/view?usp=drive_link` | `HM26-2AF4_decision-log.pdf` | `44f06356c5c17c13` |
-| 3 | [Presentation](./resource-templates/presentation-template.md) (≤ 10 slides, PDF) | `<https://drive.google.com/file/d/.../view>` | `<TeamID>_presentation.pdf` | `<...>` |
+| 3 | [Presentation](./resource-templates/presentation-template.md) (≤ 10 slides, PDF) | `https://drive.google.com/file/d/1Cyo4HyLvyJ8uVPT-HS2vyMWruh1bMmTz/view?usp=drive_links` | `HM26-2AF4_presentation.pdf` | `7B924CB8CBF33510` |
 
 <!--
 Get the hash:
